@@ -1,5 +1,5 @@
 
-class LLNode {
+export class LLNode {
     public value: number;
     public next: LLNode | null
     constructor(value: number) {     
@@ -9,8 +9,8 @@ class LLNode {
 }
 
 
-class LinkedList {
-    private head: LLNode | null;
+export class LinkedList {
+    public head: LLNode | null;
     constructor() {
         this.head = null;
     }
@@ -74,7 +74,6 @@ class LinkedList {
     }
 
 
-
     print (): string {
         if(this.head === null) {
             return "Linked List is empty";
@@ -88,24 +87,25 @@ class LinkedList {
         result += `${currNode.value}`;
         return result;
     }
+
+    removeByIndex (idx: number): string | number {
+        if(this.head === null) {
+            return "Linked List is empty";
+        }
+        if(idx === 0) {
+            return this.removeFromBegin();
+        }
+        let currIndex = 0;
+        let currNode = this.head;
+        while(currIndex < idx - 1) {
+            if(currNode.next == null) {
+                return "There no node within the index";
+            }
+            currNode = currNode.next;
+            currIndex++;
+        }
+        const value = currNode.next!.value;
+        currNode.next = currNode.next?.next || null;
+        return value;
+    }
 }
-
-const linkedList = new LinkedList();
-
-linkedList.insertAtEnd(30);
-linkedList.insertAtEnd(29);
-linkedList.insertAtEnd(10);
-linkedList.insertAtBegin(49);
-linkedList.insertAtBegin(43);
-linkedList.insertAtBegin(90);
-linkedList.insertAtBegin(23);
-
-console.log(linkedList.print());
-console.log(linkedList.removeFromEnd());
-console.log(linkedList.removeFromEnd());
-console.log(linkedList.removeFromEnd());
-console.log(linkedList.removeFromEnd());
-
-console.log(linkedList.removeFromBegin());
-console.log(linkedList.removeFromBegin());
-console.log(linkedList.removeFromBegin());
