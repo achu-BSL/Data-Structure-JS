@@ -1,4 +1,4 @@
-class Graph {
+class GraphAM {
     private adjacencyList: { [key: string]: string[] };
   
     constructor() {
@@ -87,7 +87,7 @@ class Graph {
     }
   }
   
-  const g = new Graph();
+  const g = new GraphAM();
   
   g.addVertex("A");
   g.addVertex("B");
@@ -105,4 +105,5 @@ class Graph {
   g.addEdges("E", "F");
   
   console.log(g.BFS("A"));
+
   
